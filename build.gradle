@@ -1,0 +1,20 @@
+plugins {
+    id 'java-library'
+    id 'idea'
+}
+
+group 'com.galvanize'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.+'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.+'
+}
+
+test {
+    useJUnitPlatform()
+}
