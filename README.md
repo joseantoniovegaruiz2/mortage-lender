@@ -31,7 +31,7 @@ Apply what you've learned so far.
 
 1. Fork this project. It contains no starter code, so you must create your own modules.
 2. Share your new fork with your group. One repo per group.
-3. Submit a link to your completed code in [Learn](). Every member of the group should submit the same link.
+3. Submit a link to your completed code in [Learn](https://learn-2.galvanize.com/cohorts/2560/blocks/537/content_files/checkpoints/mortgage_lender.md?assessment=true). Every member of the group should submit the same link.
 
 ### Stories and Acceptance Criteria
 
