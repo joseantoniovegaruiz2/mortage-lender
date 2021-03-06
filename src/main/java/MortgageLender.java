@@ -1,5 +1,3 @@
-
-
 public class MortgageLender {
     private double funds;
 
@@ -11,4 +9,7 @@ public class MortgageLender {
         return funds;
     }
 
+    public String applyLoan() {
+        return "approved";
+    }
 }

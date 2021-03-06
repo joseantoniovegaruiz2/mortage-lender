@@ -31,6 +31,16 @@ public class MortgageLenderTest {
         assertEquals(130000, mortgageLender.checkAvailableFunds());
     }
 
+    /**
+     * As a lender, I want to approve or deny loans base on
+     * available funds, so that I don't go bankrupt.
+     */
+    @Test
+    public void applyLoanTest() {
+        MortgageLender mortgageLender=new MortgageLender();
+        assertEquals("approved", mortgageLender.applyLoan());
+    }
+
 
 
 }
