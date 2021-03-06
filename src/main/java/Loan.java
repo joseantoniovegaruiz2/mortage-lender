@@ -1,3 +1,4 @@
+import java.time.Duration;
 import java.time.LocalDate;
 
 
@@ -96,8 +97,8 @@ public class Loan {
 
     // argument is in days
     public boolean checkLoanExpiration(LocalDate currentDate) {
-        //return Math.abs(Duration.between(currentDate, this.getOfferDate()).toDays()) > 3;
-        return false;
+        return Math.abs(Duration.between(currentDate.atStartOfDay(), this.getOfferDate().atStartOfDay()).toDays()) > 3;
+        //return false;
     }
 
 
