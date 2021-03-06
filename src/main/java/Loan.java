@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 
 
 public class Loan {
@@ -5,13 +6,9 @@ public class Loan {
     double amount;
     String loanStatus;
 
-    public boolean isQualificationStatus() {
-        return qualificationStatus;
-    }
+    LocalDate offerDate;
 
-    public void setQualificationStatus(boolean qualificationStatus) {
-        this.qualificationStatus = qualificationStatus;
-    }
+
 
     boolean qualificationStatus;
     CustomerProfile customerProfile;
@@ -79,11 +76,28 @@ public class Loan {
         return this.loanStatus;
 
     }
-    public void setLoanOffer(String sent) {
-        this.loanOffer="sent";
+
+    public boolean isQualificationStatus() {
+        return qualificationStatus;
     }
-    public String getLoanOffer() {
-        return this.loanOffer;
+
+    public void setQualificationStatus(boolean qualificationStatus) {
+        this.qualificationStatus = qualificationStatus;
+    }
+
+    public LocalDate getOfferDate() {
+        return offerDate;
+    }
+
+    public void setOfferDate(LocalDate offerDate) {
+        this.offerDate = offerDate;
+    }
+
+
+    // argument is in days
+    public boolean checkLoanExpiration(LocalDate currentDate) {
+        //return Math.abs(Duration.between(currentDate, this.getOfferDate()).toDays()) > 3;
+        return false;
     }
 
 

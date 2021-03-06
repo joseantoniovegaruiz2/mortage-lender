@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class MortgageLender {
     public String applyLoan(Loan loan) {
         if (loan.getAmount() <= this.checkAvailableFunds() && loan.isQualificationStatus()) {
             loan.setLoanStatus("pending");
+            loan.setOfferDate(LocalDate.now());
             pendingLoan.add(loan);
             return "approved";
         }
@@ -55,4 +57,6 @@ public class MortgageLender {
     public void returnFunds (Loan loan){
         this.pendingLoan.remove(loan);
     }
+
+
 }

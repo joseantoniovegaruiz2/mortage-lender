@@ -134,6 +134,22 @@ public class MortgageLenderTest {
             assertEquals(45000, lender.checkAvailableFunds());
         }
 
+    /**
+     * As a lender, I want to set an expiration date of 3 days on all loan contracts, so that I can manage my time and money wisely.
+     */
+    @Test
+    public void testLoanOfferExpirationDate() {
+        MortgageLender lender = new MortgageLender();
+        lender.addDeposit(20000);
+        Loan loan = new Loan(1, 6000);
+        loan.setQualificationStatus(true);
+
+        lender.applyLoan(loan);
+
+
+        //assertTrue(lender.isLoanExpired(loan));
+    }
+
 
 
 
