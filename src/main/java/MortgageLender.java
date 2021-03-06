@@ -15,4 +15,8 @@ public class MortgageLender {
         }
         return "denied";
     }
+
+    public boolean getApplicantQualificationStatus(double loanAmt, int dti, int creditScore, double savings) {
+        return true;
+    }
 }

@@ -45,6 +45,20 @@ public class MortgageLenderTest {
         assertEquals("approved", mortgageLender.applyLoan(2000));
     }
 
+    /**
+     * Given a loan applicant with <dti> DTI, <credit score> credit score, and <savings> savings
+     * When they apply for a loan
+     * Then their qualification is <qualification>
+     */
+    @Test
+    public void getApplicantQualificationStatus() {
+        MortgageLender mortgageLender = new MortgageLender();
+
+        assertEquals(true, mortgageLender.getApplicantQualificationStatus(
+                250000, 21, 700, 100000
+        ));
+    }
+
 
 
 }
