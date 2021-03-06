@@ -40,9 +40,9 @@ public class MortgageLenderTest {
         MortgageLender mortgageLender=new MortgageLender();
         mortgageLender.addDeposit(5000);
         assertEquals("approved", mortgageLender.applyLoan(new Loan(1,5000)));
-
-        assertEquals("denied", mortgageLender.applyLoan(new Loan(2,40000)));
-        assertEquals("denied", mortgageLender.applyLoan(new Loan(3,60000)));
+        mortgageLender.addDeposit(5000);
+        assertEquals("denied", mortgageLender.applyLoan(new Loan(2,6000)));
+        assertEquals("approved", mortgageLender.applyLoan(new Loan(3,4000)));
     }
 
     /**

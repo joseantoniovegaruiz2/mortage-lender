@@ -1,10 +1,24 @@
 public class Loan {
 
+    int loanId;
+    double amount;
+    String status;
+    CustomerProfile customerProfile;
+
+    public Loan(int loanId, double amount, CustomerProfile customerProfile) {
+        this.loanId = loanId;
+        this.amount=amount;
+        this.customerProfile = customerProfile;
+
+    }
     public Loan(int loanId, double amount) {
         this.loanId = loanId;
         this.amount=amount;
+        this.customerProfile = null;
 
     }
+
+
 
     public int getLoanId() {
         return loanId;
@@ -13,8 +27,6 @@ public class Loan {
     public void setLoanId(int loanId) {
         this.loanId = loanId;
     }
-
-    int loanId;
 
     public double getAmount() {
         return amount;
@@ -32,8 +44,15 @@ public class Loan {
         this.status = status;
     }
 
-    double amount;
-    String status;
+    public CustomerProfile getCustomerProfile() {
+        return customerProfile;
+    }
+
+    public void setCustomerProfile(CustomerProfile customerProfile) {
+        this.customerProfile = customerProfile;
+    }
+
+
 
     public String status() {
         return "pending";
