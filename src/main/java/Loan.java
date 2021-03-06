@@ -1,8 +1,19 @@
-public class Loan {
 
+
+public class Loan {
     int loanId;
     double amount;
     String loanStatus;
+
+    public boolean isQualificationStatus() {
+        return qualificationStatus;
+    }
+
+    public void setQualificationStatus(boolean qualificationStatus) {
+        this.qualificationStatus = qualificationStatus;
+    }
+
+    boolean qualificationStatus;
     CustomerProfile customerProfile;
     private String loanOffer;
 
@@ -10,12 +21,15 @@ public class Loan {
         this.loanId = loanId;
         this.amount=amount;
         this.customerProfile = customerProfile;
+        this.loanStatus = "new";
+        this.qualificationStatus = false;
 
     }
     public Loan(int loanId, double amount) {
         this.loanId = loanId;
         this.amount=amount;
         this.customerProfile = null;
+        this.qualificationStatus = false;
 
     }
 

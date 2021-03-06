@@ -3,21 +3,26 @@ import java.util.List;
 
 public class MortgageLender {
     private double funds;
-    private double pendingFunds;
     private List<Loan> pendingLoan=new ArrayList<>();
-    private String loanOffer;
 
     public void addDeposit(double amountDeposit) {
         funds+=amountDeposit;
     }
 
     public  double checkAvailableFunds() {
-        return funds - pendingFunds;
+        return funds - this.getPendingFunds();
+    }
+
+    public double getPendingFunds() {
+        double totalAmount = 0;
+        for (Loan loan: this.pendingLoan) {
+            totalAmount+= loan.getAmount();
+        }
+        return totalAmount;
     }
 
     public String applyLoan(Loan loan) {
-        if (loan.getAmount() <= this.checkAvailableFunds()) {
-            pendingFunds=+loan.getAmount();
+        if (loan.getAmount() <= this.checkAvailableFunds() && loan.isQualificationStatus()) {
             loan.setLoanStatus("pending");
             pendingLoan.add(loan);
             return "approved";
@@ -29,32 +34,25 @@ public class MortgageLender {
         return customerProfile.getDti() < 36 && customerProfile.getCredit_score() > 620 && customerProfile.getSavings() >= (loanAmt * .25);
     }
 
-    public String sendLoanOffer(Loan loan) {
-        loan.setLoanOffer("sent");
-        return loan.getLoanOffer();
-    }
 
-    public String acceptLoan(Loan loan2) {
-        loan2.setLoanStatus( "accepted");
-        return loan2.getLoanStatus();
+    public String acceptLoanOffer(Loan loan2) {
+        if (this.pendingLoan.contains(loan2)) {
+            loan2.setLoanStatus( "accepted");
+            return loan2.getLoanStatus();
+        }
+        return "not found";
     }
 
     public String rejectLoanOffer(Loan loan3) {
-
-        loan3.setLoanStatus("rejected");
-        loan3.setLoanOffer("rejected");
-        return loan3.getLoanStatus();
-    }
-
-
-    public String rejectLoanStatus(Loan loan3) {
-           loan3.setLoanStatus("rejected");
+        if (this.pendingLoan.contains(loan3)) {
+            loan3.setLoanStatus("rejected");
             returnFunds(loan3);
-           return loan3.getLoanStatus();
-
+            return loan3.getLoanStatus();
+        }
+        return "not found";
     }
+
     public void returnFunds (Loan loan){
-        pendingFunds-=loan.amount;
-        funds=+loan.amount;
+        this.pendingLoan.remove(loan);
     }
 }

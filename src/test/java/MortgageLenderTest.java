@@ -39,10 +39,17 @@ public class MortgageLenderTest {
     public void applyLoanTest() {
         MortgageLender mortgageLender=new MortgageLender();
         mortgageLender.addDeposit(5000);
-        assertEquals("approved", mortgageLender.applyLoan(new Loan(1,5000)));
+        Loan loan1 = new Loan(1,5000);
+        loan1.setQualificationStatus(true);
+        assertEquals("approved", mortgageLender.applyLoan(loan1));
         mortgageLender.addDeposit(5000);
-        assertEquals("denied", mortgageLender.applyLoan(new Loan(2,6000)));
-        assertEquals("approved", mortgageLender.applyLoan(new Loan(3,4000)));
+        Loan loan2 = new Loan(2,6000);
+        loan2.setQualificationStatus(true);
+        assertEquals("denied", mortgageLender.applyLoan(loan2));
+
+        Loan loan3 = new Loan(3,4000);
+        loan3.setQualificationStatus(true);
+        assertEquals("approved", mortgageLender.applyLoan(loan3));
     }
 
     /**
@@ -105,11 +112,26 @@ public class MortgageLenderTest {
         public void When_OfferReceived_UpdateLoanStatus() {
             MortgageLender mortgageLender = new MortgageLender();
             Loan loan =new Loan( 1, 5000);
+            loan.setQualificationStatus(true);
             Loan  loan2=new Loan( 1, 10000);
-            Loan  loan3=new Loan( 1, 30000);
-            assertEquals("sent",mortgageLender.sendLoanOffer(loan));
-            assertEquals("accepted",mortgageLender.acceptLoan(loan2));
-            assertEquals("rejected",mortgageLender.rejectLoanStatus(loan3));
+            loan2.setQualificationStatus(true);
+
+            int totalFunds = 50000;
+            // not found
+            assertEquals("not found",mortgageLender.acceptLoanOffer(loan2));
+            MortgageLender lender = new MortgageLender();
+            lender.addDeposit(totalFunds);
+            lender.applyLoan(loan);
+            lender.applyLoan(loan2);
+
+            assertEquals(35000, lender.checkAvailableFunds());
+
+            assertEquals("accepted", lender.acceptLoanOffer(loan));
+            // if accepted fund should be same
+            assertEquals(35000, lender.checkAvailableFunds());
+
+            assertEquals("rejected", lender.rejectLoanOffer(loan2));
+            assertEquals(45000, lender.checkAvailableFunds());
         }
 
 
