@@ -87,7 +87,7 @@ public class MortgageLenderTest {
         Loan loan =new Loan(1,5000);
         if (mortgageLender.applyLoan(loan).equals("approved")){
             assertEquals(0,mortgageLender.checkAvailableFunds());
-            assertEquals("pending",loan.status());
+            assertEquals("pending",loan.status()) ;
         }
 
 
