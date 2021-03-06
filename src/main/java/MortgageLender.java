@@ -17,6 +17,6 @@ public class MortgageLender {
     }
 
     public boolean getApplicantQualificationStatus(double loanAmt, int dti, int creditScore, double savings) {
-        return true;
+        return dti < 36 && creditScore > 620 && savings >= (loanAmt * .25);
     }
 }

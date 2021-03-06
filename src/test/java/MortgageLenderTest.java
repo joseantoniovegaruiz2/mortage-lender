@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MortgageLenderTest {
 //    When I check my available funds
@@ -54,9 +54,25 @@ public class MortgageLenderTest {
     public void getApplicantQualificationStatus() {
         MortgageLender mortgageLender = new MortgageLender();
 
-        assertEquals(true, mortgageLender.getApplicantQualificationStatus(
+        assertTrue(mortgageLender.getApplicantQualificationStatus(
                 250000, 21, 700, 100000
         ));
+
+        // failing dti
+        assertFalse(mortgageLender.getApplicantQualificationStatus(
+                250000, 37, 700, 100000
+        ));
+
+        // failing credit score
+        assertFalse(mortgageLender.getApplicantQualificationStatus(
+                250000, 30, 600, 100000
+        ));
+
+        // failing savings
+        assertFalse(mortgageLender.getApplicantQualificationStatus(
+                250000, 20, 700, 10000
+        ));
+
     }
 
 
