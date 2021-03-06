@@ -39,10 +39,10 @@ public class MortgageLenderTest {
     public void applyLoanTest() {
         MortgageLender mortgageLender=new MortgageLender();
         mortgageLender.addDeposit(5000);
-        assertEquals("approved", mortgageLender.applyLoan(5000));
+        assertEquals("approved", mortgageLender.applyLoan(5000, new Loan()));
 
-        assertEquals("denied", mortgageLender.applyLoan(5001));
-        assertEquals("approved", mortgageLender.applyLoan(2000));
+        assertEquals("denied", mortgageLender.applyLoan(5001, new Loan()));
+        assertEquals("denied", mortgageLender.applyLoan(2000, new Loan()));
     }
 
     /**
@@ -72,6 +72,24 @@ public class MortgageLenderTest {
         assertFalse(mortgageLender.getApplicantQualificationStatus(
                 250000, 20, 700, 10000
         ));
+
+    }
+
+//
+//    Given I have approved a loan
+//    When a loan offer is sent
+//    Then the requested loan amount is moved from available funds to pending funds
+//    And the loan status is marked as pending
+    @Test
+    public void When_Approved_loanStatusIsMarkedPending(){
+        MortgageLender mortgageLender = new MortgageLender();
+        Loan loan=new Loan();
+        mortgageLender.addDeposit(5000);
+        if (mortgageLender.applyLoan(5000, new Loan()).equals("approved")){
+            assertEquals(0,mortgageLender.checkAvailableFunds());
+            assertEquals("pending",loan.status());
+        }
+
 
     }
 
