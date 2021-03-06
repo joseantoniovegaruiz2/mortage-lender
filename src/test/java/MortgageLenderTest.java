@@ -55,23 +55,20 @@ public class MortgageLenderTest {
         MortgageLender mortgageLender = new MortgageLender();
 
         assertTrue(mortgageLender.getApplicantQualificationStatus(
-                250000, 21, 700, 100000
+                new CustomerProfile(21, 700, 100000),250000
         ));
 
         // failing dti
         assertFalse(mortgageLender.getApplicantQualificationStatus(
-                250000, 37, 700, 100000
-        ));
+                new CustomerProfile(37, 700, 100000),250000));
 
         // failing credit score
-        assertFalse(mortgageLender.getApplicantQualificationStatus(
-                250000, 30, 600, 100000
-        ));
+                assertFalse(mortgageLender.getApplicantQualificationStatus(
+                        new CustomerProfile(30, 600, 100000),250000));
 
         // failing savings
         assertFalse(mortgageLender.getApplicantQualificationStatus(
-                250000, 20, 700, 10000
-        ));
+                new CustomerProfile(20, 700, 10000),250000));
 
     }
 
