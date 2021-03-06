@@ -24,8 +24,11 @@ public class MortgageLenderTest {
     public void AddDepositAmount_And_checkAvailableFunds(){
         MortgageLender mortgageLender=new MortgageLender();
 
-        mortgageLender.addDeposit(100);
-        assertEquals(100,mortgageLender.checkAvailableFunds());
+        mortgageLender.addDeposit(100000);
+        assertEquals(100000,mortgageLender.checkAvailableFunds());
+
+        mortgageLender.addDeposit(30000);
+        assertEquals(130000, mortgageLender.checkAvailableFunds());
     }
 
 
