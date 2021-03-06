@@ -39,10 +39,10 @@ public class MortgageLenderTest {
     public void applyLoanTest() {
         MortgageLender mortgageLender=new MortgageLender();
         mortgageLender.addDeposit(5000);
-        assertEquals("approved", mortgageLender.applyLoan(5000, new Loan()));
+        assertEquals("approved", mortgageLender.applyLoan(new Loan(1,5000)));
 
-        assertEquals("denied", mortgageLender.applyLoan(5001, new Loan()));
-        assertEquals("denied", mortgageLender.applyLoan(2000, new Loan()));
+        assertEquals("denied", mortgageLender.applyLoan(new Loan(2,40000)));
+        assertEquals("denied", mortgageLender.applyLoan(new Loan(3,60000)));
     }
 
     /**
@@ -83,9 +83,9 @@ public class MortgageLenderTest {
     @Test
     public void When_Approved_loanStatusIsMarkedPending(){
         MortgageLender mortgageLender = new MortgageLender();
-        Loan loan=new Loan();
         mortgageLender.addDeposit(5000);
-        if (mortgageLender.applyLoan(5000, new Loan()).equals("approved")){
+        Loan loan =new Loan(1,5000);
+        if (mortgageLender.applyLoan(loan).equals("approved")){
             assertEquals(0,mortgageLender.checkAvailableFunds());
             assertEquals("pending",loan.status());
         }
