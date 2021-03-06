@@ -9,7 +9,10 @@ public class MortgageLender {
         return funds;
     }
 
-    public String applyLoan() {
-        return "approved";
+    public String applyLoan(double amount) {
+        if (amount <= this.funds) {
+            return "approved";
+        }
+        return "denied";
     }
 }
