@@ -2,8 +2,9 @@ public class Loan {
 
     int loanId;
     double amount;
-    String status;
+    String loanStatus;
     CustomerProfile customerProfile;
+    private String loanOffer;
 
     public Loan(int loanId, double amount, CustomerProfile customerProfile) {
         this.loanId = loanId;
@@ -37,12 +38,9 @@ public class Loan {
     }
 
     public String isStatus() {
-        return status;
+        return loanStatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public CustomerProfile getCustomerProfile() {
         return customerProfile;
@@ -57,4 +55,22 @@ public class Loan {
     public String status() {
         return "pending";
     }
+
+    public void setLoanStatus(String sent) {
+        this.loanStatus=sent;
+    }
+
+
+    public String getLoanStatus() {
+        return this.loanStatus;
+
+    }
+    public void setLoanOffer(String sent) {
+        this.loanOffer="sent";
+    }
+    public String getLoanOffer() {
+        return this.loanOffer;
+    }
+
+
 }

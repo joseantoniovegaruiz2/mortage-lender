@@ -5,6 +5,7 @@ public class MortgageLender {
     private double funds;
     private double pendingFunds;
     private List<Loan> pendingLoan=new ArrayList<>();
+    private String loanOffer;
 
     public void addDeposit(double amountDeposit) {
         funds+=amountDeposit;
@@ -17,7 +18,7 @@ public class MortgageLender {
     public String applyLoan(Loan loan) {
         if (loan.getAmount() <= this.checkAvailableFunds()) {
             pendingFunds=+loan.getAmount();
-            loan.setStatus("pending");
+            loan.setLoanStatus("pending");
             pendingLoan.add(loan);
             return "approved";
         }
@@ -28,4 +29,32 @@ public class MortgageLender {
         return customerProfile.getDti() < 36 && customerProfile.getCredit_score() > 620 && customerProfile.getSavings() >= (loanAmt * .25);
     }
 
+    public String sendLoanOffer(Loan loan) {
+        loan.setLoanOffer("sent");
+        return loan.getLoanOffer();
+    }
+
+    public String acceptLoan(Loan loan2) {
+        loan2.setLoanStatus( "accepted");
+        return loan2.getLoanStatus();
+    }
+
+    public String rejectLoanOffer(Loan loan3) {
+
+        loan3.setLoanStatus("rejected");
+        loan3.setLoanOffer("rejected");
+        return loan3.getLoanStatus();
+    }
+
+
+    public String rejectLoanStatus(Loan loan3) {
+           loan3.setLoanStatus("rejected");
+            returnFunds(loan3);
+           return loan3.getLoanStatus();
+
+    }
+    public void returnFunds (Loan loan){
+        pendingFunds-=loan.amount;
+        funds=+loan.amount;
+    }
 }

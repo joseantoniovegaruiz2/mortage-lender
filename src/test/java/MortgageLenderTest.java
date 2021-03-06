@@ -86,9 +86,32 @@ public class MortgageLenderTest {
             assertEquals(0,mortgageLender.checkAvailableFunds());
             assertEquals("pending",loan.status()) ;
         }
-
-
     }
+
+//
+//    As a lender, I want to receive response for loan offers, so that I can update the status of
+//    pending loans.
+//
+//    Given I have sent a loan offer to a qualified applicant
+//    When the applicant accepts my loan offer
+//    Then the loan amount is removed from the pending funds
+//    And the loan status is marked as accepted
+//
+//    Given I have sent a loan offer to a qualified applicant
+//    When the applicant rejects my loan offer
+//    Then the loan amount is moved from the pending funds back to available funds
+//    And the loan status is marked as rejected
+        @Test
+        public void When_OfferReceived_UpdateLoanStatus() {
+            MortgageLender mortgageLender = new MortgageLender();
+            Loan loan =new Loan( 1, 5000);
+            Loan  loan2=new Loan( 1, 10000);
+            Loan  loan3=new Loan( 1, 30000);
+            assertEquals("sent",mortgageLender.sendLoanOffer(loan));
+            assertEquals("accepted",mortgageLender.acceptLoan(loan2));
+            assertEquals("rejected",mortgageLender.rejectLoanStatus(loan3));
+        }
+
 
 
 
