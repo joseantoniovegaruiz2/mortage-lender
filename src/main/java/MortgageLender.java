@@ -1,6 +1,6 @@
-import java.math.BigDecimal;
 
-public class MortageLender {
+
+public class MortgageLender {
     private double funds;
 
     public void addDeposit(double amountDeposit) {

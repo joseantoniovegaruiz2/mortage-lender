@@ -1,19 +1,16 @@
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MortageLenderTest {
+public class MortgageLenderTest {
 //    When I check my available funds
 //    Then I should see how much funds I currently have
 
     @Test
     public void checkAvailableFundsTest(){
-        MortageLender mortageLender=new MortageLender();
+        MortgageLender mortgageLender=new MortgageLender();
 
-        assertEquals(0.0,mortageLender.checkAvailableFunds());
+        assertEquals(0.0,mortgageLender.checkAvailableFunds());
     }
 //
 //    When I add <deposit_amount>
@@ -25,13 +22,10 @@ public class MortageLenderTest {
 //            |     200,000    |      30,000    | 230,000  |
     @Test
     public void AddDepositAmount_And_checkAvailableFunds(){
-        MortageLender mortageLender=new MortageLender();
+        MortgageLender mortgageLender=new MortgageLender();
 
-        mortageLender.addDeposit(100);
-        assertEquals(100,mortageLender.checkAvailableFunds());
-
-
-
+        mortgageLender.addDeposit(100);
+        assertEquals(100,mortgageLender.checkAvailableFunds());
     }
 
 
