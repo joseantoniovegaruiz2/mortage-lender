@@ -1,9 +1,14 @@
 import java.math.BigDecimal;
 
 public class MortageLender {
+    private double funds;
 
-
-    public static BigDecimal checkAvailableFunds() {
-        return BigDecimal.ZERO;
+    public void addDeposit(double amountDeposit) {
+        funds=amountDeposit;
     }
+
+    public  double checkAvailableFunds() {
+        return funds;
+    }
+
 }
